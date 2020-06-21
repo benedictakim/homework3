@@ -1,25 +1,4 @@
-//==============start pseudocode outline=======================================================
-
-//prompts for criteria
-//1. how long (8-128)
-//if from 8-128, else prompt with error message "enter a number from 8-128 inclusive"
-//2. upper, lower, numbers, symbols
-//if none chosen, "error message: chose at least one criteria"
-
-
-//variables for password character options: for UPPER, lower, numbers, symbols
-
-
-//function to generate password with the criteria
-
-
-//=========end pseudocode outline==========================================================
-
-
-
-// Assignment Code
-var generateBtn = document.querySelector("#generate");
-
+document.querySelector("#generate").addEventListener("click", writePassword);
 
 // Write password to the #password input
 function writePassword() {
@@ -30,5 +9,47 @@ function writePassword() {
 
 }
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+
+//arrays
+var upper = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var lower = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+var symbols = ["!", "%", "&", ",", "*", "+", "-", ".", "/", "<", ">", "?","~"];
+
+//variables
+var lengthinput = "";
+var upperinput;
+var lowerinput;
+var numbersinput;
+var symbolsinput;
+
+//1. how long (8-128)
+function generatePassword() {
+  var lengthinput = (prompt("How many chracters would you like in your password? (8-128 inclusive)"));
+
+  //while loop for checking 8-128, error if outside 8-128 or null; confirm input
+  while(lengthinput <= 8 || lengthinput >= 128) {
+  alert("Password length must be between 8-128 characters Try again");
+  var lengthinput = (prompt("How many chracters would you like in your password? (8-128 inclusive)"));
+  } 
+
+  //display number of characters 
+  alert(`Your password will have ${lengthinput} characters. Click OK to choose some more options for your password.`);
+
+//2. other parameters: upper, lower, numbers, symbols
+  var upperinput = confirm("upper case letter? Click OK for Yes; Click Cancel for NO");
+  var lowerinput = confirm("lower case letters? Click OK for Yes; Click Cancel for NO");
+  var numbersinput = confirm("numbers? Click OK for Yes; Click Cancel for NO");   
+  var symbolsinput = confirm("symbols? Click OK for Yes; Click Cancel for NO");
+
+  // Loop if answer is outside the parameters 
+  while(upperinput === false && lowerinput === false && numbersinput === false && symbolsinput === false) {
+  alert("You must choose at least one parameter or in other words, click OK on at least one of the options");
+  var upperinput = confirm("upper case letter? Click OK for Yes; Click Cancel for NO");
+  var lowerinput = confirm("lower case letters? Click OK for Yes; Click Cancel for NO");
+  var numbersinput = confirm("numbers? Click OK for Yes; Click Cancel for NO");   
+  var symbolsinput = confirm("symbols? Click OK for Yes; Click Cancel for NO");
+
+//3. Stringing password characters
+
+}
