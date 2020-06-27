@@ -5,9 +5,7 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
@@ -29,12 +27,12 @@ var symbolsinput;
 
 function generatePassword() {
 //1. how long (8-128)
-  var lengthinput = (prompt("How many chracters would you like in your password? (8-128 inclusive)"));
+  lengthinput = prompt("How many chracters would you like in your password? (8-128 inclusive)");
 
   //while loop for checking 8-128, error if outside 8-128 or null; confirm input
-  while(lengthinput <= 8 || lengthinput >= 128) {
+  if (lengthinput < 8 || lengthinput > 128) {
   alert("Password length must be between 8-128 characters Try again");
-  var lengthinput = (prompt("How many chracters would you like in your password? (8-128 inclusive)"));
+  lengthinput = prompt("How many chracters would you like in your password? (8-128 inclusive)");
   } 
 
   //display number of characters 
@@ -55,23 +53,23 @@ function generatePassword() {
   var symbolsinput = confirm("symbols? Click OK for Yes; Click Cancel for NO");
   }
 
-//3. Stringing password characters
-  var newpassword = [];
+//3. Stringing password characters [needs to be debugged, can't figure it out]
+  password = [];
   if (upperinput) {
-    newpassword.concat(upper);
+    password.concat(upper);
   }
   if (lowerinput) {
-    newpassword.concat(lower);
+    password.concat(lower);
   }
   if (numbersinput) {
-    newpassword.concat(number);
+    password.concat(number);
   }
   if (symbolsinput) {
-    newpassword.concat(symbol);
+    password.concat(symbols);
   }
 
   for (var i = 0; i <= lengthinput; i++) {
-    var newpassword = newpassword[Math.floor(Math.random() * newpassword.length)];
-    return(newpassword);      
+    password = password[Math.floor(Math.random() * password.length)];
+    return(password);      
   }
 }
