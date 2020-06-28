@@ -34,7 +34,8 @@ THEN the password is either displayed in an alert or written to the page
 
 The following image demonstrates the application functionality:
 
-![Password_generator_undefined](/Password_generator_undefined)
+Student BKim's application demo (and "undefined" error)
+<img src="Password_generator_undefined.png" width="400">
 
 ## Review
 
