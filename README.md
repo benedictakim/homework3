@@ -35,7 +35,7 @@ THEN the password is either displayed in an alert or written to the page
 The following image demonstrates the application functionality:
 
 Student BKim's application demo (and "undefined" error)
-<img src="Password_generator_undefined.png" width="300">
+<img src="Password_generator_undefined.png" width="300" >
 
 ## Review
 
