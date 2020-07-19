@@ -18,7 +18,6 @@ var number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 var symbols = ["!", "%", "&", ",", "*", "+", "-", ".", "/", "<", ">", "?","~"];
 
 //variables
-var lengthinput = "";
 var upperinput;
 var lowerinput;
 var numbersinput;
@@ -27,7 +26,7 @@ var symbolsinput;
 
 function generatePassword() {
 //1. how long (8-128)
-  lengthinput = prompt("How many chracters would you like in your password? (8-128 inclusive)");
+  var lengthinput = prompt("How many chracters would you like in your password? (8-128 inclusive)");
 
   //while loop for checking 8-128, error if outside 8-128 or null; confirm input
   if (lengthinput < 8 || lengthinput > 128) {
@@ -39,37 +38,73 @@ function generatePassword() {
   alert(`Your password will have ${lengthinput} characters. Click OK to choose some more options for your password.`);
 
 //2. other parameters: upper, lower, numbers, symbols
-  var upperinput = confirm("upper case letter? Click OK for Yes; Click Cancel for NO");
-  var lowerinput = confirm("lower case letters? Click OK for Yes; Click Cancel for NO");
-  var numbersinput = confirm("numbers? Click OK for Yes; Click Cancel for NO");   
-  var symbolsinput = confirm("symbols? Click OK for Yes; Click Cancel for NO");
+  upperinput = confirm("upper case letter? Click OK for Yes; Click Cancel for NO");
+  lowerinput = confirm("lower case letters? Click OK for Yes; Click Cancel for NO");
+  numbersinput = confirm("numbers? Click OK for Yes; Click Cancel for NO");   
+  symbolsinput = confirm("symbols? Click OK for Yes; Click Cancel for NO");
 
   // Loop if none of the options are chosen
-  while(upperinput === false && lowerinput === false && numbersinput === false && symbolsinput === false) {
+  if (upperinput === false && lowerinput === false && numbersinput === false && symbolsinput === false) {
   alert("You must choose at least one parameter, or in other words, click OK on at least one of the options");
-  var upperinput = confirm("upper case letter? Click OK for Yes; Click Cancel for NO");
-  var lowerinput = confirm("lower case letters? Click OK for Yes; Click Cancel for NO");
-  var numbersinput = confirm("numbers? Click OK for Yes; Click Cancel for NO");   
-  var symbolsinput = confirm("symbols? Click OK for Yes; Click Cancel for NO");
+    upperinput = confirm("upper case letter? Click OK for Yes; Click Cancel for NO");
+    lowerinput = confirm("lower case letters? Click OK for Yes; Click Cancel for NO");
+    numbersinput = confirm("numbers? Click OK for Yes; Click Cancel for NO");   
+    symbolsinput = confirm("symbols? Click OK for Yes; Click Cancel for NO");
   }
 
 //3. Stringing password characters [needs to be debugged, can't figure it out]
-  password = [];
-  if (upperinput) {
-    password.concat(upper);
+  var stringpassword =[];
+  if (upperinput == true && lowerinput == true && numbersinput == true && symbolsinput == true) {
+    stringpassword = stringpassword.concat(upper, lower, number, symbols);
   }
-  if (lowerinput) {
-    password.concat(lower);
+  else if (upperinput == true && numbersinput == true && symbolsinput == true) {
+      stringpassword.concat(upper, number, symbols);
   }
-  if (numbersinput) {
-    password.concat(number);
+  else if (upperinput == true && lowerinput == true && numbersinput == true) {
+    stringpassword.concat(upper, lower, number);
   }
-  if (symbolsinput) {
-    password.concat(symbols);
+  else if (upperinput == true && lowerinput == true && symbolsinput == true) {
+    stringpassword.concat(upper, lower, symbols);
+  }
+  else if (lowerinput == true && numbersinput == true && symbolsinput == true) {
+    stringpassword.concat(lower, number, symbols);
+  }
+  else if (numbersinput == true && symbolsinput == true) {
+    stringpassword.concat(number, symbols);
+  }
+  else if (upperinput == true && symbolsinput == true) {
+    stringpassword.concat(upper, symbols);
+  }
+  else if (lowerinput == true && symbolsinput == true) {
+    stringpassword.concat(lower, symbols);
+  }
+  else if (upperinput == true && lowerinput == true) {
+    stringpassword.concat(upper, lower);
+  }
+  else if (upperinput == true && numbersinput == true) {
+    stringpassword.concat(upper, number);
+  }
+  else if (lowerinput == true && numbersinput == true) {
+    stringpassword.concat(lower, number);
+  }
+  else if (upperinput == true)  {
+    stringpassword = upper;
+  }
+  else if (lowerinput == true)  {
+    stringpassword = lower;
+  }
+  else if (numbersinput == true)  {
+    stringpassword = number;
+  }
+  else if (symbolsinput == true)  {
+    stringpassword = symbols;
   }
 
-  for (var i = 0; i <= lengthinput; i++) {
-    password = password[Math.floor(Math.random() * password.length)];
-    return(password);      
+  var newpassword = [];
+  for (var i = 0; i < lengthinput; i++) {
+    var pickstring = stringpassword[Math.floor(Math.random() * stringpassword.length)];
+    newpassword.push(pickstring);
   }
-}
+  password = newpassword.join("");
+  return(password);  
+};
